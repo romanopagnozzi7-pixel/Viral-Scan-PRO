@@ -1,1 +1,9 @@
-import streamlit as st import google.generativeai as genai # Setup Gemini using your Streamlit Secrets genai.configure(api_key=st.secrets["GEMINI_API_KEY"]) model = genai.GenerativeModel("gemini-1.5-flash") # App Layout st.set_page_config(page_title="Viral-Scan-PRO", page_icon="🚀") st.title("🚀 Viral-Scan-PRO") st.write("Scan your scripts to find viral potential.") # Sidebar Payment st.sidebar.title("PRO Version 💎") payment_url = "https://buy.stripe.com/your_link_here" st.sidebar.link_button("Upgrade for Unlimited Scans", payment_url) # App Functionality text_input = st.text_area("Paste your script here:", placeholder="The secret to...") if st.button("Start Scan"): if text_input: with st.spinner("Analyzing..."): response = model.generate_content(f"Analyze this for virality: {text_input}") st.subheader("Analysis Results") st.write(response.text) else: st.warning("Please paste a script first!")
+import streamlit as st
+import google.generativeai as genai
+
+# Setup Gemini using your Streamlit Secrets
+genai.configure(api_key=st.secrets["GEMINI_API_KEY"])
+model = genai.GenerativeModel('gemini-1.5-flash')
+
+st.title("Viral Scan PRO")
+st.write("App is now running.")
